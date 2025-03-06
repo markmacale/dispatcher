@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Trip Ticket</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <a href="#">Trip Tickets</a>
+        <a href="#">Drivers</a>
+        <a href="#">History</a>
+        
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="images/dict_logo-removebg.png" alt="logo">
+            </div>
+            <div class="partner-logo">
+                <img src="images/Bagong_Pilipinas_logo-removebg.png" alt="logo">
+                <img src="images/bagong_bayan_icon-removebg.png" alt="logo">
+            </div>
+        </header>
+        <h2>Vehicle Trip Ticket</h2>
+
+        <div class="instructions">
+            <p>Instructions: 1. Fill in triplicates.<br>
+                2. Original to the driver to be returned upon completion.<br>
+                3. Duplicate to Administrative Division for return control.</p>
+        </div>
+
+        <div class="info">
+            <div>No. <input type="text" value="2025-02-040" style="border-bottom: 1px solid black;"></div>
+            <div>Date Issued: <input type="date" id="dateIssued" style="border-bottom: 1px solid black;"></div>
+        </div>
+
+        <form action="process_trip.php" method="POST">
+            <div class="form-group">
+                <label>Vehicle No:</label>
+                <select name="vehicle_no">
+                    <option value="WBU 171 Adventure">WBU 171 Adventure</option>
+                    <option value="WBU 172 Adventure">WBU 172 Adventure</option>
+                    <option value="WBU 173 Adventure">WBU 173 Adventure</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Driver:</label>
+                <select name="driver">
+                    <option value="EDWARD PARAISO">EDWARD PARAISO</option>
+                    <option value="EDWARD PARAISO">Cardo Cruz</option>
+                    <option value="EDWARD PARAISO">Juan Carlo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Authorized Passenger:</label>
+                <input type="text" name="passenger" placeholder="Enter passenger name">
+            </div>
+            <div class="form-group">
+                <label>Destination:</label>
+                <input type="text" name="destination" placeholder="Enter destination">
+            </div>
+            <div class="form-group">
+                <label>Purpose:</label>
+                <input type="text" name="purpose" placeholder="Enter purpose">
+            </div>
+
+            <div class="signature-section">
+                <div id="editableSignature" contenteditable="true" style="text-align: center; font-size: 16px; font-weight: bold;">
+                    MARIO ANTONIO V. AYA-AY<br>Chief, Technical Operations Division
+                </div>
+            </div>
+            
+
+            <table>
+                <tr>
+                    <th rowspan="2">Date</th>
+                    <th rowspan="2">Destination</th>
+                    <th colspan="2">Departure</th>
+                    <th colspan="2">Arrival</th>
+                    <th rowspan="2">Speedometer Reading</th>
+                    <th rowspan="2">Gasoline/Brake Fluid/Engine Oil Consumption</th>
+                    <th rowspan="2">Remarks</th>
+                </tr>
+                <tr>
+                    <th>AM</th>
+                    <th>PM</th>
+                    <th>AM</th>
+                    <th>PM</th>
+                </tr>
+                <tr>
+                    <td rowspan="3" contenteditable="true">February 27, 2025</td>
+                    <td contenteditable="true">RO to Bustos, Bulacan</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Bustos, Bulacan to Guiguinto, Bulacan (Carbigan)</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Guiguinto, Bulacan (Carbigan) to RO</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                </tr>
+            </table>
+            
+
+            <p style="text-align: center; margin-top: 15px;">
+                I / We hereby certify that the vehicle was on official business as stated above.
+            </p>
+
+            <div class="bottom-group">
+                <div>Fuel Requested (in liters): <input type="text" name="fuel_requested"></div>
+                <div>Total Fuel Loaded (in liters): <input type="text" name="fuel_loaded"></div>
+                <div>Total distance traveled (in km): <input type="text" name="distance_traveled"></div>
+            </div>
+
+            <div class="bottom-group">
+                <div>Date: <input type="date" id="date1" name="date1"></div>
+                <div>Date: <input type="date" id="date2" name="date2"></div>
+                <div>Date: <input type="date" id="date3" name="date3"></div>
+            </div>
+                
+
+            <div class="bottom-group">
+                <div>Passenger: <input type="text" name="passenger1"></div>
+                <div>Passenger: <input type="text" name="passenger2"></div>
+                <div>Passenger: <input type="text" name="passenger3"></div>
+            </div>
+            
+            <div class="signature-section" style="text-align: left; margin-top: 20px;">
+                <div id="editableDriver" contenteditable="true" 
+                    style="margin-top: 90px; border-top: 1px solid black; width: 300px; text-align: center; padding-top: 5px; margin-left: 0;">
+                    EDWARD PARAISO<br>Driver
+                </div>
+            </div>
+            
+            
+            
+            </div>
+        </form>
+    </div>
+
+    
+
+    <script>
+
+
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            if (sidebar.classList.contains("collapsed")) {
+                sidebar.classList.remove("collapsed");
+            } else {
+                sidebar.classList.add("collapsed");
+            }
+        }
+
+        function formatDateInput(id) {
+                    const input = document.getElementById(id);
+            
+                    input.addEventListener("change", function () {
+                        let date = new Date(this.value);
+                        if (!isNaN(date)) {
+                            const formattedDate = date.toLocaleDateString("en-US", {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric"
+                            }); // Format as "Month Day, Year"
+            
+                            this.setAttribute("data-value", this.value); // Save the original YYYY-MM-DD
+                            this.setAttribute("formatted-value", formattedDate); // Store formatted version
+            
+                            // Show formatted "Month Day, Year" in a placeholder
+                            this.type = "text";
+                            this.value = formattedDate;
+                        }
+                    });
+            
+                    input.addEventListener("focus", function () {
+                        if (this.hasAttribute("data-value")) {
+                            // Restore original YYYY-MM-DD value when clicked
+                            this.type = "date";
+                            this.value = this.getAttribute("data-value");
+                        }
+                    });
+            
+                    input.addEventListener("blur", function () {
+                        if (this.hasAttribute("formatted-value")) {
+                            // Reapply formatted "Month Day, Year" when user clicks away
+                            this.type = "text";
+                            this.value = this.getAttribute("formatted-value");
+                        }
+                    });
+                }
+            
+                formatDateInput("date1");
+                formatDateInput("date2");
+                formatDateInput("date3");
+
+        document.getElementById("dateIssued").valueAsDate = new Date();
+
+
+    </script>
+</body>
+</html>
